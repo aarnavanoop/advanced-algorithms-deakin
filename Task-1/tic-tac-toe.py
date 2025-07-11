@@ -60,3 +60,16 @@ def minimax(board, depth, is_maximizing):
             board[r][c] = " " 
             best_score = min(score, best_score)
         return best_score
+    
+def find_best_move(board):
+
+    best_score = -math.inf
+    best_move = None
+    for r, c in get_empty_cells(board):
+        board[r][c] = AI
+        score = minimax(board, 0, False)
+        board[r][c] = " " # Backtrack
+        if score > best_score:
+            best_score = score
+            best_move = (r, c)
+    return best_move
