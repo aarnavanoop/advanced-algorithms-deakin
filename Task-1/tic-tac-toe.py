@@ -26,6 +26,12 @@ def check_winner(board, player):
     ]
     return [player, player, player] in win_conditions
 
+def is_board_full(board):
+    for row in board:
+        if " " in row:
+            return False
+    return True
+
 def get_empty_cells(board):
 
     empty_cells = []
@@ -73,3 +79,46 @@ def find_best_move(board):
             best_score = score
             best_move = (r, c)
     return best_move
+
+def play_game():
+
+    board = [[" " for _ in range(3)] for _ in range(3)]
+    current_player = PLAYER 
+
+    while True:
+        print_board(board)
+
+        if current_player == PLAYER:
+            try:
+                row = int(input("Enter row (0, 1, or 2): "))
+                col = int(input("Enter column (0, 1, or 2): "))
+                if board[row][col] == " ":
+                    board[row][col] = PLAYER
+                    if check_winner(board, PLAYER):
+                        print_board(board)
+                        print("Congratulations, you win!")
+                        break
+                    current_player = AI
+                else:
+                    print("That spot is already taken.")
+            except (ValueError, IndexError):
+                print("Invalid input. Please enter a number between 0 and 2.")
+        else: # AI's turn
+            print("AI is thinking...")
+            move = find_best_move(board)
+            if move:
+                board[move[0]][move[1]] = AI
+                if check_winner(board, AI):
+                    print_board(board)
+                    print("AI wins!")
+                    break
+                current_player = PLAYER
+        
+        if is_board_full(board):
+            print_board(board)
+            print("It's a tie!")
+            break
+
+
+if __name__ == "__main__":
+    play_game()
