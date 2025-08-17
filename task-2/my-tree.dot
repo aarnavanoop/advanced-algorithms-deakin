@@ -1,0 +1,53 @@
+digraph BTree {
+    // Graph and node styling
+    graph [nodesep=0.3, ranksep=0.5];
+    node [shape=record, height=0.1, width=0.5, style="rounded,filled", fillcolor="#e0f2e0", color="#508c50"];
+    edge [color="#508c50"];
+
+    // Node Definitions
+    // Level 0 (Root)
+    node_era [label="era"];
+
+    // Level 1
+    node_bat [label="bat"];
+    node_log [label="log"];
+
+    // Level 2
+    node_ado [label="ado"];
+    node_cop [label="cop"];
+    node_kin [label="kin"];
+    node_rye [label="rye"];
+
+    // Level 3 (Leaves)
+    node_ace [label="ace"];
+    node_ban [label="ban"];
+    node_bug [label="bug"];
+    node_day [label="day"];
+    node_fax [label="fax"];
+    node_gas [label="gas"];
+    node_let [label="let"];
+    node_max [label="max"];
+    node_won [label="won"];
+
+    // Edges (Connections between nodes)
+    // Root to Level 1
+    node_era -> node_bat;
+    node_era -> node_log;
+
+    // Level 1 to Level 2
+    node_bat -> node_ado;
+    node_bat -> node_cop;
+    node_log -> node_kin;
+    node_log -> node_rye;
+
+    // Level 2 to Leaves
+    node_ado -> node_ace;
+    node_ado -> node_ban;
+    node_cop -> node_bug;
+    node_cop -> node_day;
+    node_kin -> node_fax;
+    node_kin -> node_gas;
+    node_rye -> node_let;
+    node_rye -> node_max;
+    node_rye -> node_won;
+}
